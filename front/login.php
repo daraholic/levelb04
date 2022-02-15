@@ -33,7 +33,7 @@
         $.post("api/chk_ans.php",{ans:$("#ans").val()},(chk)=>{
             if(parseInt(chk)){
                 $.post("api/chk_pw.php",
-                    {acc:$("#acc").val(),pw:$("#pw").val()},
+                    {table:'member',acc:$("#acc").val(),pw:$("#pw").val()},
                     (res)=>{
                         if(parseInt(res)){
                             location.href-"index.php";

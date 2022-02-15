@@ -4,7 +4,7 @@ session_start();
 // $ls=[1=>'普遍級',2=>'輔導級',3=>'保護級',4=>'限制級'];
 
 class DB{
-    protected $dsn="mysql:host=localhost;charset=utf8;dbname=web03";
+    protected $dsn="mysql:host=localhost;charset=utf8;dbname=web04";
     protected $user="root";
     protected $pw='';
     protected $pdo;
@@ -56,6 +56,7 @@ class DB{
                 }
             break;
         }
+        // echo $sql;
 
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -143,5 +144,9 @@ function to($url){
 
 $Mem=new DB('member');
 $Admin=new DB('admin');
+$Bot=new DB('bottom');
+$Ord=new DB('ord');
+$Type=new DB('type');
+$Goods=new DB('goods');
 
 ?>
