@@ -1,3 +1,8 @@
+<?php
+$g=$Goods->find($_GET['id']);
+
+?>
+
 <h1 class="ct">新增商品</h1>
 <form action="api/save_goods.php" method="post" enctype="multipart/form-data">
   <table class="all">
@@ -15,7 +20,7 @@
         </tr>
         <tr>
             <td class="tt ct">商品編號</td>
-            <td class="pp">完成分類後自動分配</td>
+            <td class="pp"><?=$g['no'];?></td>
         </tr>
         <tr>
             <td class="tt ct">商品名稱</td>
@@ -50,19 +55,26 @@
         <tr>
             <td class="tt ct">商品介紹</td>
             <td class="pp">
-            <textarea name="intro" id="intro" style="width:90%;height:100px"></textarea>
+            <textarea name="intro" id="intro" style="width:90%;height:100px"><?=$g['intro'];?></textarea>
             </td>
         </tr>
   </table>
   <div class="ct">
-    <button type="submit">新增</button>|
+    <input type="hidden" name="id" value="<?=$g['no'];?>">
+    <button type="submit">修改</button>|
     <button type="reset">重置</button>|
     <button type="button" onclick="location.href='?do=th'">返回</button>
   </div>
 </form>
 <script>
   $("#big").load('api/get_type.php',()=>{
-    $("#mid").load('api/get_type.php',{parent:$("#big").val()})
+    //   大分類的選項們完成時去選定商品的大分類
+    $("#big option['value='<?=$g['big'];?>']").prop('selected',true);
+    $("#mid").load('api/get_type.php',{parent:$("#big").val()},()=>{
+        // 中分類的選項完成時去選定商品的中分類
+    $("#mid option['value='<?=$g['mid'];?>']").prop('selected',true);
+
+    })
 })
 $("#big").on("change",function(){
     $("#mid").load("api/get_type.php",{parent:$("#big").val()})

@@ -1,3 +1,4 @@
+<?php include_once "base.php";?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,6 +33,35 @@
         </div>
         <div id="left" class="ct">
             <div style="min-height:400px;">
+            <!-- 帶參數(自訂) type=0 -->
+                <div class="ww"><a href="?type=0">全部商品(<?=$Goods->math('count','*',['sh'=>1]);?>)</a></div>
+                <?php
+                    $bigs=$Type->all(["parent"=>0]);
+                    foreach($bigs as $big){
+                        echo "<div class='ww'>";
+                        echo "<a href='{$big['id']}'>";
+                        echo $big['name'];
+                        
+                        $count=$Goods->math('count','*',['big'=>$big['id'],'sh'=>1]);
+                        echo "($count)";
+                        echo "</a>";
+                        // 中分類=大分類id
+                        $mids=$Type->all(["parent"=>$big['id']]);
+                        if(!empty($mids)){
+                            foreach($mids as $mid){
+                            echo "<div class='s'>";
+                            echo "<a href='?type={$mid['id']}' style='background-color:green'>";
+                            $mid['name'];
+                            $count=$Goods->math('count','*',['big'=>$big['id'],'sh'=>1]);
+                            echo "($count)";
+                            echo "</a>";
+                            echo "</div>";
+                        }
+                    }
+                        echo "<div class='s'></div>";
+                        echo "</div>";
+                    }
+                ?>
             </div>
             <span>
                 <div>進站總人數</div>
