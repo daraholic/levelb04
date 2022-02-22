@@ -50,6 +50,7 @@
         let data = {
             acc: $("#acc").val(),
             name: $("#name").val(),
+            pw: $("#pw").val(),
             tel: $("#tel").val(),
             addr: $("#addr").val(),
             email: $("#email").val(),

@@ -14,13 +14,13 @@
 
   ?>
     <tr class="pp">
-      <td><?= $row['no']; ?></td>
+      <td><a href="?do=detail&id=<?=$row['id'];?>"></a><?= $row['no']; ?></td>
       <td><?= $row['total']; ?></td>
       <td><?= $row['acc']; ?></td>
       <td><?= $row['name']; ?></td>
       <td><?= date("Y/m/d", strtotime($row['orddate'])); ?></td>
       <td>
-        <button onclick="del('admin',<?= $row['id']; ?>)">刪除</button>
+        <button onclick="del('order',<?= $row['id']; ?>)">刪除</button>
       </td>
     </tr>
   <?php
