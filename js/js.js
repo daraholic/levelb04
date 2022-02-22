@@ -11,6 +11,6 @@ function del(table,id){
 
 function logout(user){
 	$.post("api/logout.php",{user},()=>{
-		location.href="index.php";
+			location.href="index.php";
 	})
 }

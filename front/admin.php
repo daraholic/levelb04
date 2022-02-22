@@ -7,7 +7,7 @@
     </tr>
     <tr>
         <td class="tt ct">密碼</td>
-        <td class="pp"><input type="text" name="ans" id="ans"></td>
+        <td class="pp"><input type="text" name="pw" id="pw"></td>
     </tr>
     <tr>
         <td class="tt ct">驗證碼</td>
@@ -18,7 +18,7 @@
                 $_SESSION['ans']=$a+$b;
                 echo $a . " + " . $b ." = ";
             ?>
-        <input type="text" name="pwans" id="pwans"></td>
+        <input type="text" name="ans" id="ans"></td>
     </tr>
 </table>
 <div class="ct"><button onclick="login()">確認</button></div>
@@ -28,10 +28,10 @@
         $.post("api/chk_ans.php",{ans:$("#ans").val()},(chk)=>{
             if(parseInt(chk)){
                 $.post("api/chk_pw.php",
-                    {table:'member',acc:$("#acc").val(),pw:$("#pw").val()},
+                    {table:'admin',acc:$("#acc").val(),pw:$("#pw").val()},
                     (res)=>{
                         if(parseInt(res)){
-                            location.href-"index.php";
+                            location.href="back.php";
                         }else{
                             alert("帳號或密碼錯誤")
                         }
